@@ -47,9 +47,9 @@ namespace Crogen.CustomHierarchy.Editor.HierarchyElement
                         hierarchyInfo.ComponentIcons = new ComponentIcon[components.Length];
                         for (int i = 0; i < hierarchyInfo.ComponentIcons.Length; ++i)
                         {
-                            if(_hierarchySettingData.activeIcons.Count == i + 1) break;
                             hierarchyInfo.ComponentIcons[i] = new ComponentIcon();
                             hierarchyInfo.ComponentIcons[i].enable = _hierarchySettingData.activeIcons[i];
+                            if(_hierarchySettingData.activeIcons.Count == i + 1) break;
                         }
                     }
                     
