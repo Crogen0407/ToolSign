@@ -63,37 +63,36 @@ namespace Crogen.CustomHierarchy.Editor
             GUILayout.BeginHorizontal();
             GUILayout.Label("Show Icon", titleStyle);
             GUILayout.EndHorizontal();
+            ComponentIcon[] componentIcons = _hierarchyInfo.ComponentIcons;
 
-            ComponentIcon[] componentIcons = _hierarchyInfo.ComponentIcons == null ? new ComponentIcon[_hierarchyInfo.ComponentIcons.Length] : _hierarchyInfo.ComponentIcons;
-            for (int i = 0; i < _hierarchyInfo.ComponentIcons.Length; ++i)
+            if (_hierarchyInfo.ComponentIcons != null)
             {
-                componentIcons[i] = _hierarchyInfo.ComponentIcons[i];
-                if (componentIcons[i] != null && componentIcons[i].component != _hierarchyInfo)
+                for (int i = 0; i < _hierarchyInfo.ComponentIcons.Length; ++i)
                 {
-                    GUILayout.BeginHorizontal();
-                    GUILayout.Space(_spaceValue);
-
-                    GUIStyle textStyle = GUI.skin.toggle;
-                    textStyle.normal = new GUIStyleState() { textColor = componentIcons[i].enable ? Color.white : Color.gray };
-                    GUILayoutOption[] toggleOption = new[]
+                    componentIcons[i] = _hierarchyInfo.ComponentIcons[i];
+                    if (componentIcons[i] != null && componentIcons[i].component != _hierarchyInfo)
                     {
-                        GUILayout.Width(EditorGUIUtility.currentViewWidth),
-                        GUILayout.Height(20),
-                        GUILayout.ExpandWidth(false),
-                    };
+                        GUILayout.BeginHorizontal();
+                        GUILayout.Space(_spaceValue);
+
+                        GUIStyle textStyle = GUI.skin.toggle;
+                        textStyle.normal = new GUIStyleState() { textColor = componentIcons[i].enable ? Color.white : Color.gray };
+                        GUILayoutOption[] toggleOption = new[]
+                        {
+                            GUILayout.Width(EditorGUIUtility.currentViewWidth),
+                            GUILayout.Height(20),
+                            GUILayout.ExpandWidth(false),
+                        };
                     
-                    componentIcons[i].enable = GUILayout.Toggle(componentIcons[i].enable, $"  {componentIcons[i].name}", toggleOption);
+                        componentIcons[i].enable = GUILayout.Toggle(componentIcons[i].enable, $"  {componentIcons[i].name}", toggleOption);
                 
-                    GUILayout.EndHorizontal();
+                        GUILayout.EndHorizontal();
                 
                 
-                    if (componentIcons[i].component == null)
-                        break;    
-                }
-                else
-                {
-                    continue;
-                }
+                        if (componentIcons[i].component == null)
+                            break;    
+                    }
+                }            
             }
 
             #endregion
