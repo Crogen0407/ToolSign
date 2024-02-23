@@ -31,7 +31,6 @@ namespace Crogen.CustomHierarchy.Editor.HierarchyElement
                         for (int i = 0; i < components.Length; ++i)
                         {
                             ComponentIcon componentIcon = hierarchyInfo.ComponentIcons[i];
-                            
                             if(componentIcon == null)
                                 componentIcon = new ComponentIcon();
                             
