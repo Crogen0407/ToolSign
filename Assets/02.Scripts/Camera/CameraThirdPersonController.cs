@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraThirdPersonController : CameraController
 {
-    public CameraThirdPersonController(CameraConverter cameraConverter) : base(cameraConverter)
+    public CameraThirdPersonController(CameraConverter cameraConverter, Camera camera) : base(cameraConverter, camera)
     {
     }
 }
