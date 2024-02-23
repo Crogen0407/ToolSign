@@ -8,5 +8,8 @@ public class GameManager : MonoSingleton<GameManager>
     private void Awake()
     {
         Player = FindObjectOfType<Player>();
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 }

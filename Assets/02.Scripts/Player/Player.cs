@@ -3,10 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Crogen.PowerfulInput;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] protected InputReader _inputReader;
+    public InputReader inputReader;
 
     [SerializeField] private float _moveSpeed = 5;
     
@@ -23,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        _rigidbody.velocity = _inputReader.InputVector * _moveSpeed;
+        _rigidbody.velocity = inputReader.InputVector * _moveSpeed;
     }
     
     void Update()

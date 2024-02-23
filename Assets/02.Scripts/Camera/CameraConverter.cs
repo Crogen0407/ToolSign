@@ -6,6 +6,9 @@ using UnityEngine;
 public class CameraConverter : MonoBehaviour
 {
     public Vector3 CameraLookDirection { get; private set; }
+
+    public float onePersonCameraRotationSpeed = 5;
+    public float thirdPersonCameraRotationSpeed = 5;
     
     //CameraControllers
     private CameraThirdPersonController _cameraThirdPersonController;
@@ -35,11 +38,14 @@ public class CameraConverter : MonoBehaviour
     void FixedUpdate()
     {
         if(CurrentCameraController != null)
-            CurrentCameraController.CameraUpdate();
+            CurrentCameraController.CameraFixedUpdate();
     }
 
     private void Update()
     {
+        if(CurrentCameraController != null)
+            CurrentCameraController.CameraUpdate();
+        
         if (Input.GetKeyDown(KeyCode.Alpha0))
         {
             ChangeCurrentCamera(_cameraThirdPersonController);

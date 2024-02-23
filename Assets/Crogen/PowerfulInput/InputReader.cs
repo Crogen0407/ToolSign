@@ -7,14 +7,19 @@ namespace Crogen.PowerfulInput
     [CreateAssetMenu(fileName = "InputReader", menuName = "Crogen/InputReader", order = 0)]
     public class InputReader : ScriptableObject, Controls.IPlayerActions
     {
+        #region Values
+
+        public Vector3 InputVector { get; private set; }
+        public Vector2 MouseDeltaPosition { get; private set; }
+
+        #endregion
+        
         #region Input Event
 
         public event Action DashEvent;
         public event Action AttackEvent;
 
         #endregion
-
-        public Vector3 InputVector { get; private set; }
 
         private Controls _controls;
 
@@ -48,6 +53,12 @@ namespace Crogen.PowerfulInput
         {
             if(context.performed)
                 AttackEvent?.Invoke();
+        }
+
+        public void OnMouseDelta(InputAction.CallbackContext context)
+        {
+            MouseDeltaPosition = context.ReadValue<Vector2>();
+            Debug.Log(MouseDeltaPosition);
         }
     }
 }

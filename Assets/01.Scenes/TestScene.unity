@@ -391,6 +391,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0570bd720f5c1c64fb1f75bc58e8f866, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onePersonCameraRotationSpeed: 5
+  thirdPersonCameraRotationSpeed: 5
   cameras:
   - {fileID: 956157608}
   - {fileID: 963194227}
@@ -678,7 +680,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f97805b0e6ebedb48b0ce812604dbe30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputReader: {fileID: 11400000, guid: 836c45128fe44d04995e0341f944d184, type: 2}
+  inputReader: {fileID: 11400000, guid: 836c45128fe44d04995e0341f944d184, type: 2}
   _moveSpeed: 5
 --- !u!54 &859764346
 Rigidbody:

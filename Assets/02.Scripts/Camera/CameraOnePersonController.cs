@@ -13,4 +13,18 @@ public class CameraOnePersonController : CameraController
         base.CameraUpdate();
         camera.transform.position = _player.transform.position;
     }
+
+    public override void CameraFixedUpdate()
+    {
+        base.CameraFixedUpdate();
+        Vector2 vec = _player.inputReader.MouseDeltaPosition;
+        camera.transform.eulerAngles += new Vector3(
+            -vec.y,
+            vec.x,
+            0) * (cameraConverter.onePersonCameraRotationSpeed * Time.fixedDeltaTime);
+
+        Vector3 angles = camera.transform.eulerAngles;
+        angles.x = Mathf.Clamp(angles.x, -45f, 45f);
+        camera.transform.eulerAngles = angles;
+    }
 }

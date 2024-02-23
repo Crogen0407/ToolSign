@@ -17,4 +17,9 @@ public abstract class CameraController
     {
         
     }
+    
+    public virtual void CameraFixedUpdate()
+    {
+        
+    }
 }
