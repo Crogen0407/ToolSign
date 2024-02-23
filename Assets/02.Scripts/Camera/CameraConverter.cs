@@ -12,8 +12,8 @@ public class CameraConverter : MonoBehaviour
     
     void Awake()
     {
-        CameraThirdPersonController = new CameraThirdPersonController();
-        CameraOnePersonController = new CameraOnePersonController();
+        CameraThirdPersonController = new CameraThirdPersonController(this);
+        CameraOnePersonController = new CameraOnePersonController(this);
     }
 
     void Update()

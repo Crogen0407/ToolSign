@@ -2,17 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraThirdPersonController
+public class CameraThirdPersonController : CameraController
 {
-    // Start is called before the first frame update
-    void Start()
+    public CameraThirdPersonController(CameraConverter cameraConverter) : base(cameraConverter)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
