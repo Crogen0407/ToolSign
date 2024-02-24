@@ -3,12 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 using Crogen.PowerfulInput;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class Player : MonoBehaviour
 {
     public InputReader inputReader;
-
+    public CameraConverter cameraConverter;
     [SerializeField] private float _moveSpeed = 5;
     
     #region Components
@@ -24,7 +23,9 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        _rigidbody.velocity = inputReader.InputVector * _moveSpeed;
+        Vector3 vec = new Vector3(cameraConverter.CurrentCameraController.camera.transform.forward.x, 0, cameraConverter.CurrentCameraController.camera.transform.forward.z).normalized;
+        vec = (vec * inputReader.InputVector.z) + (cameraConverter.CurrentCameraController.camera.transform.right * inputReader.InputVector.x);
+        _rigidbody.velocity = vec * _moveSpeed;
     }
     
     void Update()

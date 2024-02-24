@@ -58,7 +58,6 @@ namespace Crogen.PowerfulInput
         public void OnMouseDelta(InputAction.CallbackContext context)
         {
             MouseDeltaPosition = context.ReadValue<Vector2>();
-            Debug.Log(MouseDeltaPosition);
         }
     }
 }

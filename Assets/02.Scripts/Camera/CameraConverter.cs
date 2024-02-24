@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class CameraConverter : MonoBehaviour
 {
-    public Vector3 CameraLookDirection { get; private set; }
-
     public float onePersonCameraRotationSpeed = 5;
     public float thirdPersonCameraRotationSpeed = 5;
     
