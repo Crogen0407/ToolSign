@@ -23,8 +23,8 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        Vector3 vec = new Vector3(cameraConverter.CurrentCameraController.camera.transform.forward.x, 0, cameraConverter.CurrentCameraController.camera.transform.forward.z).normalized;
-        vec = (vec * inputReader.InputVector.z) + (cameraConverter.CurrentCameraController.camera.transform.right * inputReader.InputVector.x);
+        Vector3 vec = new Vector3(cameraConverter.CurrentCameraController.ForwardVector.x, 0, cameraConverter.CurrentCameraController.ForwardVector.z).normalized;
+        vec = (vec * inputReader.InputVector.z) + (cameraConverter.CurrentCameraController.RightVector * inputReader.InputVector.x);
         _rigidbody.velocity = vec * _moveSpeed;
     }
     

@@ -31,6 +31,7 @@ public class CameraConverter : MonoBehaviour
             cameras[i].gameObject.SetActive(false);
         
         CurrentCameraController.camera.gameObject.SetActive(true);
+        cameraController.CameraInit();
     }
     
     void FixedUpdate()
