@@ -28,15 +28,17 @@ public class Player : MonoBehaviour
     {
         Vector3 vec = new Vector3(cameraConverter.CurrentCameraController.ForwardVector.x, 0, cameraConverter.CurrentCameraController.ForwardVector.z).normalized;
         vec = (vec * inputReader.InputVector.z) + (cameraConverter.CurrentCameraController.RightVector * inputReader.InputVector.x);
-        if(CheckAroundCollider(_colliderCenter, vec, 1.2f, _layerMask) == false)
-            _rigidbody.velocity = vec * _moveSpeed;
+        _rigidbody.velocity = new Vector3(
+            CheckAroundCollider(_colliderCenter, new Vector3(vec.x, 0, 0), 1.2f, _layerMask),
+            0, 
+            CheckAroundCollider(_colliderCenter, new Vector3(0, 0, vec.z), 1.2f, _layerMask)) * _moveSpeed;
     }
 
-    private bool CheckAroundCollider(Vector3 center, Vector3 direction, float maxDistance, LayerMask layerMask)
+    private int CheckAroundCollider(Vector3 center, Vector3 direction, float maxDistance, LayerMask layerMask)
     {
         center += transform.position;
         Debug.DrawRay(center, direction * maxDistance, Color.green, 0.1f);
-        return Physics.Raycast(center, direction, maxDistance, layerMask);
+        return Physics.Raycast(center, direction, maxDistance, layerMask) == true || direction == Vector3.zero ? 0 : 1;
     }
 
     void Update()
