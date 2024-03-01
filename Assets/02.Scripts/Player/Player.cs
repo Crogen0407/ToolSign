@@ -35,7 +35,7 @@ public class Player : MonoBehaviour
         _rigidbody.velocity = new Vector3(
             CheckAroundCollider(_colliderCenter, new Vector3(X, 0, 0), X * 0.1f, _layerMask),
             0, 
-            CheckAroundCollider(_colliderCenter, new Vector3(0, 0, Z), Z * 0.1f, _layerMask)) * _moveSpeed;
+            CheckAroundCollider(_colliderCenter, new Vector3(0, 0, Z), Z * 0.1f, _layerMask)).normalized * _moveSpeed;
         
         //Debug.Log($"{CheckAroundCollider(_colliderCenter, new Vector3(vec.x, 0, 0), (int)Mathf.Clamp(vec.x, -1, 1) * 1.2f, _layerMask)} {CheckAroundCollider(_colliderCenter, new Vector3(0, 0, vec.z),  (int)Mathf.Clamp(vec.z, -1, 1) * 1.2f, _layerMask)}");
     }

@@ -13,7 +13,7 @@ public class CameraOnePersonController : CameraController
     public override void CameraUpdate()
     {
         base.CameraUpdate();
-        cameraTransform.position = _player.transform.position;
+        cameraTransform.position = _player.transform.position + cameraConverter.onePersonCameraPosition;
         
         ForwardVector = cameraTransform.forward;
         RightVector = cameraTransform.right;
