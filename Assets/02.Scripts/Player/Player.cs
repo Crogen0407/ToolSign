@@ -26,34 +26,33 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        Vector3 vec = new Vector3(cameraConverter.CurrentCameraController.ForwardVector.x, 0, cameraConverter.CurrentCameraController.ForwardVector.z).normalized;
-        vec = (vec * inputReader.InputVector.z) + (cameraConverter.CurrentCameraController.RightVector * inputReader.InputVector.x);
+        CameraController currentCameraController = cameraConverter.CurrentCameraController;
+        Vector3 vec = new Vector3(currentCameraController.ForwardVector.x, 0, currentCameraController.ForwardVector.z).normalized;
+        vec = (currentCameraController.ForwardVector * inputReader.InputVector.z) + (currentCameraController.RightVector * inputReader.InputVector.x);
 
-        float X = !Mathf.Approximately(vec.x, 0f) ? Mathf.Sign(vec.x) : 0f;
-        float Z = !Mathf.Approximately(vec.z, 0f) ? Mathf.Sign(vec.z) : 0f;
-        
-        _rigidbody.velocity = new Vector3(
-            CheckAroundCollider(_colliderCenter, new Vector3(X, 0, 0), X * 0.1f, _layerMask),
+        Vector3 convertVector = Vector3.zero;
+     
+        convertVector = new Vector3(
+            CheckAroundCollider(_colliderCenter, new Vector3(vec.x, 0, 0), vec.x * 0.1f, _layerMask).x,
             0, 
-            CheckAroundCollider(_colliderCenter, new Vector3(0, 0, Z), Z * 0.1f, _layerMask)).normalized * _moveSpeed;
-        
-        //Debug.Log($"{CheckAroundCollider(_colliderCenter, new Vector3(vec.x, 0, 0), (int)Mathf.Clamp(vec.x, -1, 1) * 1.2f, _layerMask)} {CheckAroundCollider(_colliderCenter, new Vector3(0, 0, vec.z),  (int)Mathf.Clamp(vec.z, -1, 1) * 1.2f, _layerMask)}");
+            CheckAroundCollider(_colliderCenter, new Vector3(0, 0, vec.z), vec.z * 0.1f, _layerMask).z).normalized * _moveSpeed;
+        _rigidbody.velocity = convertVector;
     }
 
-    private float CheckAroundCollider(Vector3 center, Vector3 direction, float maxDistance, LayerMask layerMask)
+    private Vector3 CheckAroundCollider(Vector3 center, Vector3 direction, float maxDistance, LayerMask layerMask)
     {
         center += transform.position;
         if (maxDistance != 0)
         {
             if (Physics.BoxCast(center, transform.lossyScale/2, direction, Quaternion.identity, 0.1f, layerMask))
             {
-                return 0;
+                return Vector3.zero;
             }
             
-            return Mathf.Sign(maxDistance);
+            return direction * Mathf.Pow(Mathf.Sign(maxDistance), 2);
         }
 
-        return 0;
+        return Vector3.zero;
     }
 
     void Update()

@@ -9,6 +9,7 @@ public abstract class CameraController
     public Camera camera;
     public Transform cameraTransform;
     protected Player _player;
+    public int cameraNumber;
     
     public CameraController(CameraConverter cameraConverter, Camera camera)
     {

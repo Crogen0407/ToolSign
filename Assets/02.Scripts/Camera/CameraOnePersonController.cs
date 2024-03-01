@@ -8,6 +8,7 @@ public class CameraOnePersonController : CameraController
 {
     public CameraOnePersonController(CameraConverter cameraConverter, Camera camera) : base(cameraConverter, camera)
     {
+        cameraNumber = 1;
     }
 
     public override void CameraUpdate()

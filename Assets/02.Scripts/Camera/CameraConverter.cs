@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraConverter : MonoBehaviour
@@ -12,7 +9,8 @@ public class CameraConverter : MonoBehaviour
     
     //CameraControllers
     private CameraThirdPersonController _cameraThirdPersonController;
-    public CameraOnePersonController _cameraOnePersonController;
+    private CameraOnePersonController _cameraOnePersonController;
+    
     public CameraController CurrentCameraController { get; private set; }
     
     //Camera
